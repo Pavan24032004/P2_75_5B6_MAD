@@ -5,42 +5,51 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import org.w3c.dom.Text
 class MainActivity : AppCompatActivity() {
-    val TAG="MainActivity"
+    val TAG = "MainActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         displayMessage("onCreate")
     }
-    override fun onStart()
-    {
+
+    override fun onStart() {
         super.onStart()
         displayMessage("onStart")
+        showSnackbar()
     }
-    override fun onResume()
-    {
+
+    override fun onResume() {
         super.onResume()
         displayMessage("onResume")
     }
-    override fun onPause()
-    {
+
+    override fun onPause() {
         super.onPause()
         displayMessage("onPause")
     }
-    override fun onStop()
-    {
+
+    override fun onStop() {
         super.onStop()
         displayMessage("onStop")
     }
-    override fun onDestroy()
-    {
+
+    override fun onDestroy() {
         super.onDestroy()
         displayMessage("onDestroy")
     }
-    fun displayMessage(msg:String)
-        {
-            Toast.makeText(this,"This is a $msg",Toast.LENGTH_LONG).show()
-            Log.i(TAG,"$msg"+"is called")
-        }
+
+    fun displayMessage(msg: String) {
+        Toast.makeText(this, "This is a $msg", Toast.LENGTH_LONG).show()
+        Log.i(TAG, "$msg" + "is called")
     }
+
+    private fun showSnackbar() {
+        val myCoordinatorLayout = findViewById<CoordinatorLayout>(R.id.myCoordinatorLayout)
+        Snackbar.make(myCoordinatorLayout, R.string.email_sent, Snackbar.LENGTH_SHORT).show()
+
+    }
+}
